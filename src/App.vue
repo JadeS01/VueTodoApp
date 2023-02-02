@@ -51,7 +51,14 @@ watch(todos, (newVal) => {
       <legend>Create A Todo</legend>
       <form @submit.prevent="addTodo">
         <h4>What are your plans?</h4>
-        <input type="text" placeholder="e.g. Open a PR" v-model="input_content">
+
+        <div class="center">
+          <div class="input-group">
+            <input type="text" class="input-field" placeholder="Task" v-model="input_content" required />
+            <label class="input-label"> Task</label>
+          </div>
+        </div>
+
         <h4>Select a category</h4>
         <div class="row">
           <div class="center">
@@ -83,10 +90,10 @@ watch(todos, (newVal) => {
           <div v-for="todo in todos_work" :class="`todo-item ${todo.completed && 'strike'} row`">
             <label class="li">
               <input type="checkbox" v-model="todo.completed">
-              <span :class="`bubble ${todo.category}`">{{ todo.category }}</span>
+              <!-- <span :class="`bubble ${todo.category}`">{{ todo.category }}</span> -->
             </label>
             <div class="li">
-              <input type="text" v-model="todo.content">
+              <input type="text" class="list-input" v-model="todo.content">
             </div>
             <div class="li">
               <button class="delete" @click="removeTodo(todo)">Delete</button>
@@ -99,10 +106,10 @@ watch(todos, (newVal) => {
           <div v-for="todo in todos_personal" :class="`todo-item ${todo.completed && 'strike'} row`">
             <label class="li">
               <input type="checkbox" v-model="todo.completed">
-              <span :class="`bubble ${todo.category}`">{{ todo.category }}</span>
+              <!-- <span :class="`bubble ${todo.category}`">{{ todo.category }}</span> -->
             </label>
             <div class="li">
-              <input type="text" v-model="todo.content">
+              <input type="text" class="list-input" v-model="todo.content">
             </div>
             <div class="li">
               <button class="delete" @click="removeTodo(todo)">Delete</button>
@@ -110,23 +117,6 @@ watch(todos, (newVal) => {
           </div>
         </fieldset>
 
-      </div>
-
-
-      <div class="list">
-        <!-- mapping each todo -->
-        <div v-for="todo in todos_asc" :class="`todo-item ${todo.completed && 'strike'} row`">
-          <label class="li">
-            <input type="checkbox" v-model="todo.completed">
-            <span :class="`bubble ${todo.category}`">{{ todo.category }}</span>
-          </label>
-          <div class="li">
-            <input type="text" v-model="todo.content">
-          </div>
-          <div class="li">
-            <button class="delete" @click="removeTodo(todo)">Delete</button>
-          </div>
-        </div>
       </div>
     </fieldset>
   </main>
